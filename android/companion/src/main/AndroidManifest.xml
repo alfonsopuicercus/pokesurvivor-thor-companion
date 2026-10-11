@@ -1,0 +1,19 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-feature android:name="android.hardware.touchscreen" android:required="false" />
+    <uses-feature android:name="android.hardware.gamepad" android:required="false" />
+    <queries><package android:name="org.mozilla.firefox" /></queries>
+    <application android:label="PokéSurvivor Thor Companion" android:allowBackup="false" android:icon="@drawable/companion_icon"
+        android:theme="@android:style/Theme.Material.NoActionBar"
+        android:usesCleartextTraffic="true" android:networkSecurityConfig="@xml/network_security"
+        android:enableOnBackInvokedCallback="false">
+        <activity android:name=".PanelActivity" android:exported="true" android:resizeableActivity="true"
+            android:configChanges="orientation|screenSize|keyboardHidden|keyboard">
+            <intent-filter><action android:name="android.intent.action.MAIN" /><category android:name="android.intent.category.LAUNCHER" /></intent-filter>
+        </activity>
+        <service android:name=".BridgeService" android:exported="false" android:foregroundServiceType="dataSync" />
+    </application>
+</manifest>

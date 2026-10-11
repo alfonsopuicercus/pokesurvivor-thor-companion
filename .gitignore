@@ -1,0 +1,7 @@
+tools/cache/
+android/local.properties
+android/.gradle/
+android/**/build/
+android/.signing/
+node_modules/
+.DS_Store

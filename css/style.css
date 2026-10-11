@@ -1,0 +1,12 @@
+.gamepad-mode .pad-focus { outline: 3px solid #ffd23f !important; outline-offset: 2px; box-shadow: 0 0 0 5px rgba(255,210,63,.2); }
+.gamepad-mode .pad-edit { outline-color: #82e8ff !important; }
+.pad-bindings { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 8px; margin: 12px 0; }
+.pad-bindings button { text-align: left; white-space: normal; }
+.pad-bindings small { display: block; opacity: .7; }
+#pad-keyboard, #pad-capture { z-index: 90; }
+.pad-keyboard-box { width: min(640px,100%); }
+.pad-text { min-height: 1.6em; overflow-wrap: anywhere; padding: 8px; background: #080f23; border-radius: 6px; }
+.pad-keys { display: grid; grid-template-columns: repeat(10,minmax(0,1fr)); gap: 6px; }
+.pad-keys .btn { padding: 8px 0; }
+.pad-key-actions { gap: 6px; margin-top: 12px; justify-content: center; }
+@media (max-height: 600px) { .pad-keyboard-box { padding: 10px; } .pad-text { margin: 4px 0; } .pad-keys .btn { padding: 4px 0; } }

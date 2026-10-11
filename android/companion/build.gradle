@@ -1,0 +1,35 @@
+plugins { id 'com.android.application' }
+def keyProps = new Properties()
+def keyFile = rootProject.file('.signing/preview.properties')
+if(keyFile.exists()) keyFile.withInputStream { keyProps.load(it) }
+android {
+    namespace 'com.pokesurvivor.companion'
+    compileSdk 35
+    defaultConfig {
+        applicationId 'com.pokesurvivor.companion'
+        minSdk 26
+        targetSdk 35
+        versionCode 3
+        versionName '0.3.0-companion-preview'
+    }
+    if(keyFile.exists()) signingConfigs { preview {
+        storeFile rootProject.file('.signing/preview.jks')
+        storePassword keyProps.getProperty('storePassword')
+        keyAlias 'preview'
+        keyPassword keyProps.getProperty('keyPassword')
+    } }
+    buildTypes {
+        release { if(keyFile.exists()) signingConfig signingConfigs.preview }
+        debug { applicationIdSuffix '.debug'; versionNameSuffix '-debug' }
+    }
+    buildFeatures { buildConfig true }
+    compileOptions { sourceCompatibility JavaVersion.VERSION_17; targetCompatibility JavaVersion.VERSION_17 }
+    sourceSets { main { java.srcDir '../app/src/main/java/com/pokesurvivor/thor' } }
+}
+// Reuse only the pure controller mapper; the offline Activity is excluded.
+android.sourceSets.main.java.exclude '**/MainActivity.java'
+android.sourceSets.main.java.srcDir 'src/panel/java'
+dependencies {
+    testImplementation 'junit:junit:4.13.2'
+    testImplementation 'org.json:json:20240303'
+}
